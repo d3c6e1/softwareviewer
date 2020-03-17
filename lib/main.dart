@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:softwareviewer/interface/AuthorizationPage.dart';
+import 'package:softwareviewer/interface/landing.dart';
 
 void main() => runApp(SoftwareViewer());
 
@@ -12,7 +12,7 @@ class SoftwareViewer extends StatelessWidget {
         primaryColor: Colors.green,
         textTheme: TextTheme(headline6: TextStyle(color: Colors.white))
       ),
-      home: AuthorizationPage(),
+      home: LandingPage(),
     );
   }
 }

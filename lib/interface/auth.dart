@@ -20,7 +20,11 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 55,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.headline6.color,
+                  ),
                   children: [
                     TextSpan(
                       text: 'SOFTWARE ',
@@ -41,7 +45,7 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
     Widget _button(String text, func()){
       return  RaisedButton(
         splashColor: Theme.of(context).primaryColor,
-        highlightColor: Theme.of(context).primaryColor,
+        highlightColor: Colors.white70,
         color: Colors.white,
         child: Text(
           text,
@@ -73,9 +77,7 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
           _logo(),
           _auth('GOOGLE authorization', (){}),
         ],
-
       ),
-
     );
   }
 }
