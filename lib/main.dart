@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:softwareviewer/interface/landing.dart';
+import 'package:softwareviewer/screens/landing.dart';
 
 void main() => runApp(SoftwareViewer());
 
@@ -9,7 +9,7 @@ class SoftwareViewer extends StatelessWidget {
     return MaterialApp(
       title: 'Software Viewer',
       theme: ThemeData(
-        primaryColor: Colors.green,
+        primarySwatch: Colors.green,
         textTheme: TextTheme(headline6: TextStyle(color: Colors.white))
       ),
       home: LandingPage(),

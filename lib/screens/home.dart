@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:softwareviewer/logic/Computer.dart';
+import 'package:softwareviewer/domain/Computer.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -13,13 +13,12 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
           title: Text(
             'COMPUTERS',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 30
+                fontSize: 28
             ),
           ),
           centerTitle: true,
@@ -41,6 +40,7 @@ class ComputersListState extends State<ComputersList>{
     Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
     Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
     Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
+    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
   ];
 
   @override
@@ -55,13 +55,13 @@ class ComputersListState extends State<ComputersList>{
                 margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(76, 175, 80, 0.85),
+                    color: Colors.black12,
                   ),
                   child: ListTile(
                     title: Text(
                       computers.elementAt(index).name,
                       style: TextStyle(
-                          color: Theme.of(context).textTheme.headline6.color,
+//                          color: Theme.of(context).textTheme.headline6.color,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       ),
@@ -69,12 +69,13 @@ class ComputersListState extends State<ComputersList>{
                     subtitle: Text(
                       computers.elementAt(index).updateDateF,
                       style: TextStyle(
-                          color: Colors.white70,
+//                          color: Colors.white70,
                       ),
                     ),
                     trailing: CircleAvatar(
                       child: Text(computers.elementAt(index).software.length.toString()),
-                      backgroundColor: Colors.black45,
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.black12,
                     ),
                     onTap: (){
 

@@ -70,12 +70,40 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
       );
     }
 
+    Widget _signInButton() {
+      return RaisedButton(
+        splashColor: Theme.of(context).primaryColor,
+        onPressed: () {},
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+        highlightColor: Colors.white70,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image(image: AssetImage("assets/images/google_logo.png"), height: 35.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  'Sign in with Google',
+                  style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Column(
         children: <Widget>[
           _logo(),
-          _auth('GOOGLE authorization', (){}),
+          SizedBox(height: 100,),
+          _signInButton(),
         ],
       ),
     );

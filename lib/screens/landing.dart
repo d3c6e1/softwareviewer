@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:softwareviewer/interface/auth.dart';
-import 'package:softwareviewer/interface/home.dart';
+import 'package:softwareviewer/screens/auth.dart';
+import 'package:softwareviewer/screens/home.dart';
 
 class LandingPage extends StatelessWidget{
   @override
