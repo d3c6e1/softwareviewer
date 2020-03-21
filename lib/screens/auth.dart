@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:softwareviewer/screens/home.dart';
+import 'package:softwareviewer/screens/landing.dart';
+import 'package:softwareviewer/services/auth.dart';
 
 class AuthorizationPage extends StatefulWidget{
   @override
@@ -15,7 +18,6 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
         padding: EdgeInsets.only(top: 50),
         child: Center(
           child: Container(
-//            width: 300,
             child: Align(
               child: RichText(
                 textAlign: TextAlign.center,
@@ -26,13 +28,8 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
                       color: Theme.of(context).textTheme.headline6.color,
                   ),
                   children: [
-                    TextSpan(
-                      text: 'SOFTWARE ',
-                    ),
-                    TextSpan(
-                      text: 'VIEWER',
-//                      style: TextStyle(fontSize: 80),
-                    ),
+                    TextSpan(text: 'SOFTWARE ',),
+                    TextSpan(text: 'VIEWER',),
                   ]
                 ),
               ),
@@ -42,38 +39,9 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
       );
     }
 
-    Widget _button(String text, func()){
-      return  RaisedButton(
-        splashColor: Theme.of(context).primaryColor,
-        highlightColor: Colors.white70,
-        color: Colors.white,
-        child: Text(
-          text,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 21),
-        ),
-        onPressed: () => func,
-      );
-    }
-
-    Widget _auth(String text, func()){
-      return Padding(
-        padding: EdgeInsets.only(top: 150),
-        child: Center(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                _button(text, () => func),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
     Widget _signInButton() {
       return RaisedButton(
         splashColor: Theme.of(context).primaryColor,
-        onPressed: () {},
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
         highlightColor: Colors.white70,
         color: Colors.white,
@@ -87,13 +55,24 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
-                  'Sign in with Google',
+                  'Log in with Google',
                   style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
                 ),
               )
             ],
           ),
         ),
+        onPressed: () {
+          signInWithGoogle().whenComplete(() {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return HomePage();
+                }
+              )
+            );
+          });
+        },
       );
     }
 

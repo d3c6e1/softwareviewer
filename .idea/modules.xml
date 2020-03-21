@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/softwareviewer.iml" filepath="$PROJECT_DIR$/softwareviewer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/softwareviewer_android.iml" filepath="$PROJECT_DIR$/android/softwareviewer_android.iml" />
     </modules>
   </component>
 </project>
