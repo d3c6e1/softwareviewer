@@ -1,77 +1,117 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:softwareviewer/domain/computer.dart';
+import 'package:softwareviewer/screens/components/computers.dart';
+
 
 class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  int _currentIndex = 1;
+  PageController _pageController;
+  final List<String> titles = [
+    'Profile',
+    'COMPUTERS',
+    'Find computers with software'
+  ];
+  String currentTitle;
+
+  final List<Color> colors = [
+    Colors.purple,
+    Colors.green,
+    Colors.blue,
+  ];
+  Color currentColor;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentIndex, keepPage: false);
+    currentTitle = titles.elementAt(_currentIndex);
+    currentColor = colors.elementAt(_currentIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: currentColor,
           title: Text(
-            'COMPUTERS',
+            currentTitle,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 28
+                fontSize: 20
             ),
           ),
           centerTitle: true,
           ),
-        body: ComputersList(),
+        body: SizedBox.expand(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+                currentTitle = titles.elementAt(index);
+                currentColor = colors.elementAt(index);
+              });
+            },
+            children: <Widget>[
+              Container(child: null,),
+              Container(child: ComputersList(),),
+              Container(child: null,),
+            ],
+          ),
         ),
-    );
-  }
-}
-
-class ComputersList extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() => ComputersListState();
-}
-
-class ComputersListState extends State<ComputersList>{
-
-  final computers = <Computer>[
-    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
-    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
-    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
-    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Container(
-        child: ListView.builder(
-          itemCount: computers.length,
-          itemBuilder: (context, index){
-            return Card(
-              elevation: 2.0,
-              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.black12,),
-                child: ListTile(
-                  title: Text(computers.elementAt(index).name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                  subtitle: Text(computers.elementAt(index).updateDateF,),
-                  trailing: CircleAvatar(
-                    child: Text(computers.elementAt(index).software.length.toString()),
-                    foregroundColor: Colors.black,
-                    backgroundColor: Colors.black12,
-                  ),
-                  onTap: (){
-
-                  },
-                ),
-              ),
-            );
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: null,
+          tooltip: 'Refresh',
+          child: Icon(Icons.refresh),
+          elevation: 2.0,
+        ),
+        bottomNavigationBar: BottomNavyBar(
+          selectedIndex: _currentIndex,
+          onItemSelected: (index) {
+            setState(() {
+              _currentIndex = index;
+              currentTitle = titles.elementAt(index);
+              currentColor = colors.elementAt(index);
+            });
+            _pageController.jumpToPage(index);
           },
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+              icon: Icon(Icons.account_circle),
+              title: Text("Profile"),
+              textAlign: TextAlign.center,
+              activeColor: colors.elementAt(0),
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.computer),
+              title: Text('Computers'),
+              textAlign: TextAlign.center,
+              activeColor: colors.elementAt(1),
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.search),
+              title: Text('Find'),
+              textAlign: TextAlign.center,
+              activeColor: colors.elementAt(2),
+            ),
+          ],
         ),
       ),
     );
   }
-
 }

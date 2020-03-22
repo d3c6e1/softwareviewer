@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:softwareviewer/screens/home.dart';
-import 'package:softwareviewer/screens/landing.dart';
 import 'package:softwareviewer/services/auth.dart';
 
 class AuthorizationPage extends StatefulWidget{
@@ -39,7 +38,7 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
       );
     }
 
-    Widget _signInButton() {
+    Widget _button(List<Widget> text, void func()) {
       return RaisedButton(
         splashColor: Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
@@ -50,28 +49,11 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image(image: AssetImage("assets/images/google_logo.png"), height: 35.0),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  'Log in with Google',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
-                ),
-              )
-            ],
+            children: text,
           ),
         ),
         onPressed: () {
-          signInWithGoogle().whenComplete(() {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return HomePage();
-                }
-              )
-            );
-          });
+          func();
         },
       );
     }
@@ -82,9 +64,46 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
         children: <Widget>[
           _logo(),
           SizedBox(height: 100,),
-          _signInButton(),
+          _button(_logInText(context), () => _logIn(context)),
+          SizedBox(height: 100,),
+          _button(_logOutText(context), () => signOutGoogle()),
         ],
       ),
     );
+  }
+
+  List<Widget> _logOutText(BuildContext context) {
+    return <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                'Log out',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
+              ),
+            )
+          ];
+  }
+
+  void _logIn(BuildContext context) {
+    signInWithGoogle().whenComplete(() {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+              builder: (context) => HomePage()
+          )
+      );
+    });
+  }
+
+  List<Widget> _logInText(BuildContext context) {
+    return <Widget>[
+            Image(image: AssetImage("assets/images/google_logo.png"), height: 35.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                'Open with Google',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
+              ),
+            )
+          ];
   }
 }
