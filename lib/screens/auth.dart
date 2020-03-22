@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/home.dart';
+import 'package:softwareviewer/screens/landing.dart';
 import 'package:softwareviewer/services/auth.dart';
 
 class AuthorizationPage extends StatefulWidget{
   @override
-  State<StatefulWidget> createState() => _AuthorizationPageState();
+  State<StatefulWidget> createState() => AuthorizationPageState();
 }
 
-class _AuthorizationPageState extends State<AuthorizationPage>{
+class AuthorizationPageState extends State<AuthorizationPage>{
+
+  AuthService authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
 
@@ -63,10 +69,10 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
       body: Column(
         children: <Widget>[
           _logo(),
-          SizedBox(height: 100,),
+          SizedBox(height: 200,),
           _button(_logInText(context), () => _logIn(context)),
-          SizedBox(height: 100,),
-          _button(_logOutText(context), () => signOutGoogle()),
+//          SizedBox(height: 100,),
+//          _button(_logOutText(context), () => _authService.signOutGoogle()),
         ],
       ),
     );
@@ -85,12 +91,17 @@ class _AuthorizationPageState extends State<AuthorizationPage>{
   }
 
   void _logIn(BuildContext context) {
-    signInWithGoogle().whenComplete(() {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-              builder: (context) => HomePage()
-          )
-      );
+    authService.signInWithGoogle().whenComplete(() {
+      final User user = Provider.of<User>(context);
+      final bool isAuthorized = user != null;
+
+      if (isAuthorized){
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+                builder: (context) => HomePage()
+            )
+        );
+      }
     });
   }
 

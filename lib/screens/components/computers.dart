@@ -10,9 +10,9 @@ class ComputersList extends StatefulWidget{
 class ComputersListState extends State<ComputersList>{
 
   final computers = <Computer>[
+    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft4':'ver1','soft2':'ver2','soft3':'ver3', }),
     Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
-    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
-    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
+    Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft4':'ver2','soft3':'ver3', }),
     Computer(name: 'comp1', updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft1':'ver1','soft2':'ver2','soft3':'ver3', }),
   ];
 

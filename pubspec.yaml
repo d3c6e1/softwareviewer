@@ -27,7 +27,7 @@ dependencies:
 #  googleapis_auth: ^0.2.11+1
 #  gsheets: ^0.2.0+1
   intl: ^0.16.1
-#  provider: ^4.0.4
+  provider: ^4.0.4
 #  bot_toast: ^2.3.0
   firebase_auth: ^0.15.5+2
 #  loading: ^1.0.2

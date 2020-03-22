@@ -1,7 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/components/computers.dart';
+import 'package:softwareviewer/screens/profile.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -20,11 +23,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   String currentTitle;
 
   final List<Color> colors = [
-    Colors.purple,
+    Colors.deepPurple,
     Colors.green,
     Colors.blue,
   ];
   Color currentColor;
+
+  Map<int, FloatingActionButton> FABs;
 
   @override
   void initState() {
@@ -42,6 +47,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
+    FABs = {
+      0: null,
+      1: refreshFAB(),
+      2: searchFAB(),
+    };
 
     return Container(
       child: Scaffold(
@@ -67,19 +78,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               });
             },
             children: <Widget>[
-              Container(child: null,),
+              Container(child: Profile(),),
               Container(child: ComputersList(),),
               Container(child: null,),
             ],
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Refresh',
-          child: Icon(Icons.refresh),
-          elevation: 2.0,
-        ),
+        floatingActionButton: FABs[_currentIndex],
         bottomNavigationBar: BottomNavyBar(
           selectedIndex: _currentIndex,
           onItemSelected: (index) {
@@ -112,6 +118,25 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
+    );
+  }
+
+  FloatingActionButton refreshFAB() {
+    return FloatingActionButton(
+      onPressed: null,
+      tooltip: 'Refresh',
+      child: Icon(Icons.refresh),
+      elevation: 2.0,
+    );
+  }
+
+  FloatingActionButton searchFAB() {
+    return FloatingActionButton(
+      onPressed: null,
+      tooltip: 'Find',
+      child: Icon(Icons.search),
+      elevation: 2.0,
+      backgroundColor: colors.elementAt(_currentIndex),
     );
   }
 }
