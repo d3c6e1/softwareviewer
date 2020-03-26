@@ -1,13 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:googleapis/sheets/v4.dart';
 import 'package:softwareviewer/domain/user.dart';
+import 'package:softwareviewer/services/client.dart';
 
- class AuthService {
+
+ class AccessService {
+   final GoogleSignIn _googleSignIn = GoogleSignIn(
+       scopes: <String>[
+         SheetsApi.SpreadsheetsReadonlyScope
+       ]
+   );
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  final String spreadsheetId = '1LrsHlVFmjkWU3vV6HOH1cj25jsxAUyUYYCZ-wNPoeD8';
 
   Future<User> signInWithGoogle() async {
-    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    final GoogleSignInAccount googleSignInAccount = await  _googleSignIn.signIn();
     final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.getCredential(
@@ -28,7 +36,7 @@ import 'package:softwareviewer/domain/user.dart';
   }
 
   Future signOutGoogle() async {
-    await googleSignIn.signOut();
+    await _googleSignIn.signOut();
     await _auth.signOut();
     print("User Sign Out");
   }
@@ -37,4 +45,21 @@ import 'package:softwareviewer/domain/user.dart';
     return _auth.onAuthStateChanged.map((FirebaseUser user) => user != null ? User.fromFirebase(user) : null);
   }
 
-}
+  Future<SheetsApi> get sheetsApi async {
+    final GoogleSignInAccount googleSignInAccount = await  _googleSignIn.signInSilently();
+    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+    final client = GoogleAuthClient(
+        defaultHeaders: {
+          'Authorization' : 'Bearer ${googleSignInAuthentication.accessToken}'
+        }
+    );
+
+    return SheetsApi(client);
+  }
+
+  Future<Spreadsheet>connect() async {
+    return await sheetsApi.then((api) => api.spreadsheets.get(spreadsheetId));
+  }
+
+
+ }

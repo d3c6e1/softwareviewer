@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/auth.dart';
-import 'package:softwareviewer/services/auth.dart';
+import 'package:softwareviewer/services/access.dart';
 
 class Profile extends StatelessWidget {
 
@@ -65,7 +65,7 @@ class Profile extends StatelessWidget {
               SizedBox(height: 40),
               RaisedButton(
                 onPressed: () {
-                  AuthService().signOutGoogle();
+                  AccessService().signOutGoogle();
                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {return AuthorizationPage();}));
                 },
                 color: Colors.deepPurple,

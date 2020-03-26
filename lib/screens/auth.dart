@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/home.dart';
-import 'package:softwareviewer/services/auth.dart';
+import 'package:softwareviewer/services/access.dart';
 
 class AuthorizationPage extends StatefulWidget{
   @override
@@ -12,7 +12,7 @@ class AuthorizationPage extends StatefulWidget{
 
 class AuthorizationPageState extends State<AuthorizationPage>{
 
-  AuthService authService = AuthService();
+  AccessService authService = AccessService();
 
   @override
   Widget build(BuildContext context) {
@@ -70,28 +70,14 @@ class AuthorizationPageState extends State<AuthorizationPage>{
           _logo(),
           SizedBox(height: 200,),
           _button(_logInText(context), () => _logIn(context)),
-//          SizedBox(height: 100,),
-//          _button(_logOutText(context), () => _authService.signOutGoogle()),
         ],
       ),
     );
   }
 
-  List<Widget> _logOutText(BuildContext context) {
-    return <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                'Log out',
-                style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
-              ),
-            )
-          ];
-  }
-
   void _logIn(BuildContext context) {
     authService.signInWithGoogle().whenComplete(() {
-      final User user = Provider.of<User>(context);
+      final User user = Provider.of<User>(context, listen: false);
       final bool isAuthorized = user != null;
 
       if (isAuthorized){

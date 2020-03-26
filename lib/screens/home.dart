@@ -46,12 +46,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    FABs = {
-      0: null,
-      1: refreshFAB(),
-      2: searchFAB(),
-    };
-
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -82,8 +76,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ],
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: FABs[_currentIndex],
         bottomNavigationBar: BottomNavyBar(
           selectedIndex: _currentIndex,
           onItemSelected: (index) {
@@ -117,19 +109,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
     );
-  }
-
-  FloatingActionButton refreshFAB() {
-    return FloatingActionButton(
-      onPressed: () => _updateTable(),
-      tooltip: 'Refresh',
-      child: Icon(Icons.refresh),
-      elevation: 2.0,
-    );
-  }
-
-  _updateTable(){
-
   }
 
   FloatingActionButton searchFAB() {
