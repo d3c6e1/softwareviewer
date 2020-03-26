@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/home.dart';
-import 'package:softwareviewer/screens/landing.dart';
 import 'package:softwareviewer/services/auth.dart';
 
 class AuthorizationPage extends StatefulWidget{

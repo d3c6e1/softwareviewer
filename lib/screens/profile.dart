@@ -17,7 +17,7 @@ class Profile extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [Colors.deepPurple[100], Colors.blue[400]],
+            colors: [Colors.deepPurpleAccent[100], Colors.purple[100]],
           ),
         ),
         child: Center(
@@ -72,7 +72,7 @@ class Profile extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Change user',
+                    'Log out',
                     style: TextStyle(fontSize: 25, color: Colors.white),
                   ),
                 ),

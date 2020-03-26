@@ -1,10 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:softwareviewer/domain/user.dart';
-import 'package:softwareviewer/screens/components/computers.dart';
 import 'package:softwareviewer/screens/profile.dart';
+import 'package:softwareviewer/screens/computers.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -111,7 +109,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text('Find'),
+              title: Text('Search'),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(2),
             ),
@@ -123,11 +121,15 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   FloatingActionButton refreshFAB() {
     return FloatingActionButton(
-      onPressed: null,
+      onPressed: () => _updateTable(),
       tooltip: 'Refresh',
       child: Icon(Icons.refresh),
       elevation: 2.0,
     );
+  }
+
+  _updateTable(){
+
   }
 
   FloatingActionButton searchFAB() {
