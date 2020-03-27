@@ -13,21 +13,18 @@ class HomePage extends StatefulWidget{
 class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _currentIndex = 1;
   PageController _pageController;
+  String currentTitle;
+  Color currentColor;
   final List<String> titles = [
     'Profile',
-    'COMPUTERS',
-    'Find computers with software'
+    'Computers',
+    'In future'
   ];
-  String currentTitle;
-
   final List<Color> colors = [
     Colors.deepPurple,
     Colors.green,
-    Colors.blue,
+    Colors.grey,
   ];
-  Color currentColor;
-
-  Map<int, FloatingActionButton> FABs;
 
   @override
   void initState() {
@@ -45,7 +42,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -101,7 +97,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text('Search'),
+              title: Text('Reserved'),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(2),
             ),
@@ -111,13 +107,4 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  FloatingActionButton searchFAB() {
-    return FloatingActionButton(
-      onPressed: null,
-      tooltip: 'Find',
-      child: Icon(Icons.search),
-      elevation: 2.0,
-      backgroundColor: colors.elementAt(_currentIndex),
-    );
-  }
 }

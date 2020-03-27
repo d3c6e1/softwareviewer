@@ -20,8 +20,14 @@ class ComputersListState extends State<ComputersList>{
     authService.connect().then((spreadSheet) => sheets = spreadSheet.sheets).whenComplete(() {
       setState(() {
         sheets.forEach((sheet) {
+          var t = BatchGetValuesByDataFilterRequest.fromJson({
+            'dataFilters': [
+              'a1Range',
+            ]
+          });
+          print(sheet);
           computers.add(Computer(name: sheet.properties.title.toString(), updateDate: DateTime.fromMillisecondsSinceEpoch(1584466718*1000), software: {'soft4':'ver1','soft2':'ver2','soft3':'ver3', }));
-//          print(sheet);
+
         });
       });
     });
