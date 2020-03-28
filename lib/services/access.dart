@@ -57,9 +57,18 @@ import 'package:softwareviewer/services/client.dart';
     return SheetsApi(client);
   }
 
-  Future<Spreadsheet>connect() async {
+  Future<Spreadsheet> get spreadSheet async {
     return await sheetsApi.then((api) => api.spreadsheets.get(spreadsheetId));
   }
+
+  Future<SpreadsheetsValuesResourceApi> get values async {
+    return await sheetsApi.then((api) => api.spreadsheets.values);
+  }
+
+  Future<ValueRange> sheetValues(String range) async {
+    return await values.then((values) => values.get(spreadsheetId, range));
+  }
+
 
 
  }

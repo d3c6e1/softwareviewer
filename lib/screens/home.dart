@@ -68,12 +68,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: <Widget>[
               Container(child: Profile(),),
               Container(child: ComputersList(),),
-              Container(child: null,),
+//              Container(child: null,),
             ],
           ),
         ),
         bottomNavigationBar: BottomNavyBar(
           selectedIndex: _currentIndex,
+          mainAxisAlignment: MainAxisAlignment.center,
           onItemSelected: (index) {
             setState(() {
               _currentIndex = index;
@@ -95,12 +96,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(1),
             ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.search),
-              title: Text('Reserved'),
-              textAlign: TextAlign.center,
-              activeColor: colors.elementAt(2),
-            ),
+//            BottomNavyBarItem(
+//              icon: Icon(Icons.search),
+//              title: Text('Reserved'),
+//              textAlign: TextAlign.center,
+//              activeColor: colors.elementAt(2),
+//            ),
           ],
         ),
       ),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:softwareviewer/domain/computer.dart';
 
 class SoftwareList extends StatelessWidget{
   final String title;
-  final Map<String, String> software;
+  final List<Software> software;
 
   SoftwareList({Key key, @required this.title, @required this.software}) : super(key: key);
 
@@ -27,8 +28,8 @@ class SoftwareList extends StatelessWidget{
             itemCount: software.length,
             itemBuilder: (context, index) {
               return  ListTile(
-                title: Text(software.keys.elementAt(index)),
-                subtitle: Text(software.values.elementAt(index)),
+                title: Text(software.elementAt(index).appName),
+                subtitle: Text(software.elementAt(index).appVersion),
               );
             }
           ),
