@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:googleapis/sheets/v4.dart';
 import 'package:softwareviewer/domain/computer.dart';
@@ -15,41 +13,32 @@ class ComputersListState extends State<ComputersList>{
   AccessService authService = AccessService();
   List<Computer> computers = List<Computer>();
   List<Sheet> sheetsData;
-  Map<String,Map<String,String>> valueSheets = Map<String,Map<String,String>>();
-  Map<String, String> dates = Map<String,String>();
   List<List<Object>> values;
 
 
   _load() async {
     authService.spreadSheet.then((spreadSheet) => sheetsData = spreadSheet.sheets).whenComplete(() {
-      setState(() {
-        sheetsData.forEach((sheet) {
-          authService.sheetValues('${sheet.properties.title}!A1:B${sheet.properties.gridProperties.rowCount}').then((value) {
-            setState(() {
-              values = value.toJson()['values'];
-            });
-          }).whenComplete(() {
-            setState(() {
-//              valueSheets.putIfAbsent(values.elementAt(0).elementAt(0), () => {
-//                values.elementAt(0).elementAt(0): values.elementAt(0).elementAt(1),
-//              });
-              List<Software> tmpsw = List<Software>();
-              for(int i = 2; i < values.length; i++){
-                tmpsw.add(
-                    Software(
-                        values.elementAt(i).elementAt(0),
-                        values.elementAt(i).length > 1 ? values.elementAt(i).elementAt(1) : "Version unknown"
-                    )
-                );
-              }
-              computers.add(
-                  Computer(
-                      name: sheet.properties.title,
-                      updateDate: DateTime.fromMillisecondsSinceEpoch(int.parse(values.elementAt(0).elementAt(1))*1000),
-                      software: tmpsw,
-                  )
+      sheetsData.forEach((sheet) {
+        authService.sheetValues('${sheet.properties.title}!A1:B${sheet.properties.gridProperties.rowCount}').then((value) {
+          setState(() {
+            values = value.toJson()['values'];
+
+            List<Software> software = List<Software>();
+            for(int i = 2; i < values.length; i++){
+              software.add(
+                Software(
+                  values.elementAt(i).elementAt(0),
+                  values.elementAt(i).length > 1 ? values.elementAt(i).elementAt(1) : "Version unknown"
+                )
               );
-            });
+            }
+            computers.add(
+              Computer(
+                name: sheet.properties.title,
+                updateDate: DateTime.fromMillisecondsSinceEpoch(int.parse(values.elementAt(0).elementAt(1))*1000),
+                software: software,
+              )
+            );
           });
         });
       });
@@ -123,9 +112,7 @@ class ComputersListState extends State<ComputersList>{
   _refresh(){
     if(sheetsData != null) sheetsData.clear();
     if(computers != null) computers.clear();
-    if(valueSheets != null) valueSheets.clear();
     if(values != null) values.clear();
-    if(dates != null) dates.clear();
     _load();
   }
 
