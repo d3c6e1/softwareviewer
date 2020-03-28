@@ -15,14 +15,12 @@ class ComputersListState extends State<ComputersList>{
   List<Sheet> sheetsData;
   List<List<Object>> values;
 
-
   _load() async {
     authService.spreadSheet.then((spreadSheet) => sheetsData = spreadSheet.sheets).whenComplete(() {
       sheetsData.forEach((sheet) {
         authService.sheetValues('${sheet.properties.title}!A1:B${sheet.properties.gridProperties.rowCount}').then((value) {
           setState(() {
             values = value.toJson()['values'];
-
             List<Software> software = List<Software>();
             for(int i = 2; i < values.length; i++){
               software.add(
@@ -39,6 +37,8 @@ class ComputersListState extends State<ComputersList>{
                 software: software,
               )
             );
+            computers = List.from(computers.toSet());
+            computers.sort((c1,c2) => c1.name.compareTo(c2.name));
           });
         });
       });
@@ -62,30 +62,33 @@ class ComputersListState extends State<ComputersList>{
       child: Scaffold(
         body: Container(
           child: ListView.builder(
-
             itemCount: computers.length,
             itemBuilder: (context, index){
               return Card(
-                elevation: 2.0,
+                color: Colors.grey,
+                key: UniqueKey(),
+                elevation: 1.0,
                 margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Container(
+                  key: UniqueKey(),
                   decoration: BoxDecoration(color: Colors.black12,),
                   child: ListTile(
-                    title: Text(computers.elementAt(index).name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                    subtitle: Text(computers.elementAt(index).updateDateF,),
+                    key: UniqueKey(),
+                    title: Text(computers.elementAt(index).name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),),
+                    subtitle: Text(computers.elementAt(index).updateDateF, style: TextStyle(color: Colors.white),),
                     trailing: CircleAvatar(
-                      child: Text(computers.elementAt(index).software.length.toString()),
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.black12,
+                      child: Text(computers.elementAt(index).software.length.toString(), style: TextStyle(color: Colors.grey),),
+//                      foregroundColor: Colors.black,
+//                      backgroundColor: Colors.black12,
                     ),
                     onTap: (){
                       Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => SoftwareList(
-                                  title: computers.elementAt(index).name,
-                                  software: computers.elementAt(index).software,
-                              )
+                        MaterialPageRoute(
+                          builder: (context) => SoftwareList(
+                            title: computers.elementAt(index).name,
+                            software: computers.elementAt(index).software,
                           )
+                        )
                       );
                     },
                   ),
@@ -95,7 +98,7 @@ class ComputersListState extends State<ComputersList>{
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: refreshFAB(),
+        floatingActionButton: null,
       ),
     );
   }
@@ -109,7 +112,7 @@ class ComputersListState extends State<ComputersList>{
     );
   }
 
-  _refresh(){
+  _refresh() {
     if(sheetsData != null) sheetsData.clear();
     if(computers != null) computers.clear();
     if(values != null) values.clear();

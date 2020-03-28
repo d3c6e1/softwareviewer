@@ -17,14 +17,15 @@ class Profile extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [Colors.deepPurpleAccent[100], Colors.purple[100]],
+            colors: [Colors.deepPurpleAccent[200], Colors.purple[300]],
           ),
         ),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+//            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
+              SizedBox(height: 40,),
               CircleAvatar(
                 backgroundImage: NetworkImage(
                   user.imageUrl,
@@ -44,7 +45,7 @@ class Profile extends StatelessWidget {
                 user.name,
                 style: TextStyle(
                     fontSize: 25,
-                    color: Colors.deepPurple,
+                    color: Colors.white70,
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
@@ -59,7 +60,7 @@ class Profile extends StatelessWidget {
                 user.email,
                 style: TextStyle(
                     fontSize: 25,
-                    color: Colors.deepPurple,
+                    color: Colors.white70,
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 40),
@@ -68,12 +69,12 @@ class Profile extends StatelessWidget {
                   AccessService().signOutGoogle();
                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {return AuthorizationPage();}));
                 },
-                color: Colors.deepPurple,
+                color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Log out',
-                    style: TextStyle(fontSize: 25, color: Colors.white),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.purple,),
                   ),
                 ),
                 elevation: 5,

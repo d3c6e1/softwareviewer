@@ -14,8 +14,8 @@ class SoftwareViewer extends StatelessWidget {
       child: MaterialApp(
         title: 'Software Viewer',
         theme: ThemeData(
-          primarySwatch: Colors.green,
-          textTheme: TextTheme(headline6: TextStyle(color: Colors.white))
+          primarySwatch: Colors.grey,
+          textTheme: TextTheme(headline6: TextStyle(color: Colors.white),),
         ),
         home: LandingPage(),
       ),
