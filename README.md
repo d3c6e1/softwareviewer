@@ -11,4 +11,4 @@ APK
 
 
 WEB
-[Open site](https://d3c6e1.github.io/softwareviewer/release/web)
+[Open site](https://d3c6e1.github.io)
