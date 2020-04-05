@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:softwareviewer/screens/profile.dart';
 import 'package:softwareviewer/screens/computers.dart';
+import 'package:softwareviewer/screens/search.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -18,10 +19,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final List<String> titles = [
     'Profile',
     'Computers',
-    'In future'
+    'Search'
   ];
   final List<Color> colors = [
-    Colors.deepPurple,
+    Colors.deepPurpleAccent,
     Colors.green,
     Colors.grey,
   ];
@@ -49,8 +50,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           title: Text(
             currentTitle,
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,
@@ -68,7 +70,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: <Widget>[
               Container(child: Profile(),),
               Container(child: ComputersList(),),
-//              Container(child: null,),
+              Container(child: SearchPage(),),
             ],
           ),
         ),
@@ -96,12 +98,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(1),
             ),
-//            BottomNavyBarItem(
-//              icon: Icon(Icons.search),
-//              title: Text('Reserved'),
-//              textAlign: TextAlign.center,
-//              activeColor: colors.elementAt(2),
-//            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.search),
+              title: Text('Search'),
+              textAlign: TextAlign.center,
+              activeColor: colors.elementAt(2),
+            ),
           ],
         ),
       ),

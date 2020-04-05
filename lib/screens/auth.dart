@@ -11,7 +11,6 @@ class AuthorizationPage extends StatefulWidget{
 }
 
 class AuthorizationPageState extends State<AuthorizationPage>{
-
   AccessService authService = AccessService();
 
   @override

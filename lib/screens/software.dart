@@ -13,7 +13,7 @@ class SoftwareList extends StatelessWidget{
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(title, style: TextStyle(color: Colors.white),),
           centerTitle: true,
           actions: <Widget>[
             IconButton(icon: CircleAvatar(child: Text(software.length.toString()),), onPressed: null),
