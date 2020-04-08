@@ -68,7 +68,4 @@ import 'package:softwareviewer/services/client.dart';
   Future<ValueRange> sheetValues(String range) async {
     return await values.then((values) => values.get(spreadsheetId, range));
   }
-
-
-
  }

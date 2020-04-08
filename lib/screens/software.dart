@@ -13,6 +13,8 @@ class SoftwareList extends StatelessWidget{
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(52, 58, 64, 1.0),
+          brightness: Brightness.dark,
           title: Text(title, style: TextStyle(color: Colors.white),),
           centerTitle: true,
           actions: <Widget>[

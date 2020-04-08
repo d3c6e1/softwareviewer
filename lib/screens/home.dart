@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final List<Color> colors = [
     Colors.deepPurpleAccent,
     Colors.green,
-    Colors.grey,
+    Color.fromRGBO(52, 58, 64, 1.0),
   ];
 
   @override
@@ -46,7 +46,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: currentColor,
+          backgroundColor: colors.elementAt(2),
+          brightness: Brightness.dark,
           title: Text(
             currentTitle,
             style: TextStyle(
