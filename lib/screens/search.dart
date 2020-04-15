@@ -84,7 +84,7 @@ class SearchPageState extends State<SearchPage>{
                 color: Color.fromRGBO(52, 58, 64, 1.0),
                 child: ListTile(
                   title: Text(comp.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white), textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,),
-                  subtitle: Text(comp.updateDateF, style: TextStyle(color: Colors.white,), textAlign: TextAlign.center,),
+                  subtitle: Text(comp.updateDateF, style: TextStyle(color: Colors.white,), textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,),
                   trailing: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
