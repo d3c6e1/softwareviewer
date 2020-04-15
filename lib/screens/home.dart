@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:softwareviewer/screens/profile.dart';
 import 'package:softwareviewer/screens/computers.dart';
-import 'package:softwareviewer/screens/search.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -57,6 +56,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           centerTitle: true,
+//          actions: <Widget>[
+//            IconButton(
+//              icon: Icon(Icons.search, color: Colors.white,),
+//              onPressed: () => null,
+//            )
+//          ],
           ),
         body: SizedBox.expand(
           child: PageView(
@@ -71,7 +76,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: <Widget>[
               Container(child: Profile(),),
               Container(child: ComputersList(),),
-              Container(child: SearchPage(),),
+//              Container(child: SearchPage(),),
             ],
           ),
         ),
@@ -99,12 +104,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(1),
             ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.search),
-              title: Text('Search'),
-              textAlign: TextAlign.center,
-              activeColor: colors.elementAt(2),
-            ),
+//            BottomNavyBarItem(
+//              icon: Icon(Icons.search),
+//              title: Text('Search'),
+//              textAlign: TextAlign.center,
+//              activeColor: colors.elementAt(2),
+//            ),
           ],
         ),
       ),

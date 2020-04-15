@@ -18,11 +18,11 @@ class SoftwareList extends StatelessWidget{
           title: Text(title, style: TextStyle(color: Colors.white),),
           centerTitle: true,
           actions: <Widget>[
-            IconButton(icon: CircleAvatar(child: Text(software.length.toString()),), onPressed: null),
-            IconButton(
-                icon: Icon(Icons.search, color: Colors.white,),
-                onPressed: null,
-            ),
+            IconButton(icon: CircleAvatar(child: Text(software.length.toString(), style: TextStyle(fontWeight: FontWeight.bold),),), onPressed: null),
+//            IconButton(
+//                icon: Icon(Icons.search, color: Colors.white,),
+//                onPressed: null,
+//            ),
           ],
         ),
         body: Container(

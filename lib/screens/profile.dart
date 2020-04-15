@@ -5,7 +5,24 @@ import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/auth.dart';
 import 'package:softwareviewer/services/access.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => ProfileState();
+}
+
+class ProfileState extends State<Profile> {
+
+
+  @override
+  initState() {
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +31,6 @@ class Profile extends StatelessWidget {
     return Scaffold(
         body: Center(
           child: Column(
-//            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(height: 40,),
@@ -26,13 +42,6 @@ class Profile extends StatelessWidget {
                 backgroundColor: Colors.transparent,
               ),
               SizedBox(height: 40),
-//              Text(
-//                'NAME',
-//                style: TextStyle(
-//                    fontSize: 15,
-//                    fontWeight: FontWeight.bold,
-//                    color: Colors.black54),
-//              ),
               Text(
                 user.name,
                 style: TextStyle(
@@ -41,13 +50,6 @@ class Profile extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-//              Text(
-//                'EMAIL',
-//                style: TextStyle(
-//                    fontSize: 15,
-//                    fontWeight: FontWeight.bold,
-//                    color: Colors.black54),
-//              ),
               Text(
                 user.email,
                 style: TextStyle(
@@ -72,7 +74,17 @@ class Profile extends StatelessWidget {
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
-              )
+              ),
+              SizedBox(height: 40),
+//              _access ?
+//                  SizedBox(height: 1,) :
+//                  Text(
+//                    "You don't have access",
+//                    style: TextStyle(
+//                    fontSize: 24,
+//                    color: Color.fromRGBO(52, 58, 64, 1.0),
+//                    ),
+//                  ),
             ],
           ),
         ),
