@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:softwareviewer/screens/profile.dart';
 import 'package:softwareviewer/screens/computers.dart';
+import 'package:softwareviewer/screens/search.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -62,7 +63,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 //              onPressed: () => null,
 //            )
 //          ],
-          ),
+        ),
         body: SizedBox.expand(
           child: PageView(
             controller: _pageController,
@@ -76,7 +77,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: <Widget>[
               Container(child: Profile(),),
               Container(child: ComputersList(),),
-//              Container(child: SearchPage(),),
+              Container(child: SearchPage(),),
             ],
           ),
         ),
@@ -94,22 +95,22 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(
               icon: Icon(Icons.account_circle),
-              title: Text("Profile"),
+              title: Text(titles[0]),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(0),
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.computer),
-              title: Text('Computers'),
+              title: Text(titles[1]),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(1),
             ),
-//            BottomNavyBarItem(
-//              icon: Icon(Icons.search),
-//              title: Text('Search'),
-//              textAlign: TextAlign.center,
-//              activeColor: colors.elementAt(2),
-//            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.search),
+              title: Text(titles[2]),
+              textAlign: TextAlign.center,
+              activeColor: colors.elementAt(2),
+            ),
           ],
         ),
       ),

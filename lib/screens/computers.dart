@@ -59,22 +59,30 @@ class ComputersListState extends State<ComputersList>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Scaffold(
-        body: Container(
-          color: Colors.transparent,
-          padding: EdgeInsets.only(top: 10),
-          child: ResponsiveGridList(
-            desiredItemWidth: 300,
-            minSpacing: 10,
-            children: computers.map((computer) {
-              return _gridItems(computer, context);
-            }).toList()
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: null,
-      ),
+      child: _mainWindow(context),
     );
+  }
+
+  Scaffold _mainWindow(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Colors.transparent,
+        padding: EdgeInsets.only(top: 10),
+        child: _grid(context),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: null,
+    );
+  }
+
+  ResponsiveGridList _grid(BuildContext context) {
+    return ResponsiveGridList(
+        desiredItemWidth: 300,
+        minSpacing: 10,
+        children: computers.map((computer) {
+          return _gridItems(computer, context);
+        }).toList()
+      );
   }
 
   Container _gridItems(Computer computer, BuildContext context) {
@@ -113,7 +121,7 @@ class ComputersListState extends State<ComputersList>{
 
   ListTile _data(Computer computer) {
     return ListTile(
-      title: Text(computer.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34, color: Colors.white), textAlign: TextAlign.center,),
+      title: Text(computer.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34, color: Colors.white), textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,),
       subtitle: Text(computer.updateDateF, style: TextStyle(color: Colors.white,), textAlign: TextAlign.center,),
       trailing: Container(
         decoration: BoxDecoration(
@@ -124,16 +132,6 @@ class ComputersListState extends State<ComputersList>{
         child: Text(computer.software.length.toString(), style: TextStyle(color: Color.fromRGBO(52, 58, 64, 1.0), fontSize: 35, fontWeight: FontWeight.bold),),
       ),
       onTap: null,
-    );
-  }
-
-  FloatingActionButton searchFAB() {
-    return FloatingActionButton(
-      onPressed: () => null,
-      tooltip: 'Search',
-      child: Icon(Icons.search, color: Color.fromRGBO(52, 58, 64, 1.0),),
-      backgroundColor: Colors.white,
-      elevation: 2.0,
     );
   }
 

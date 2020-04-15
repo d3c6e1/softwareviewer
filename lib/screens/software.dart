@@ -30,8 +30,8 @@ class SoftwareList extends StatelessWidget{
             itemCount: software.length,
             itemBuilder: (context, index) {
               return  ListTile(
-                title: Text(software.elementAt(index).appName),
-                subtitle: Text(software.elementAt(index).appVersion),
+                title: Text(software.elementAt(index).appName, overflow: TextOverflow.ellipsis,),
+                subtitle: Text(software.elementAt(index).appVersion, overflow: TextOverflow.ellipsis,),
               );
             }
           ),
