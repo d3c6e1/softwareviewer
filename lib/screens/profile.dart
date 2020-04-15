@@ -5,24 +5,32 @@ import 'package:softwareviewer/domain/user.dart';
 import 'package:softwareviewer/screens/auth.dart';
 import 'package:softwareviewer/services/access.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => ProfileState();
+}
+
+class ProfileState extends State<Profile> {
+
+
+  @override
+  initState() {
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<User>(context);
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.deepPurpleAccent[200], Colors.purple[300]],
-          ),
-        ),
-        child: Center(
+        body: Center(
           child: Column(
-//            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(height: 40,),
@@ -35,32 +43,18 @@ class Profile extends StatelessWidget {
               ),
               SizedBox(height: 40),
               Text(
-                'NAME',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
                 user.name,
                 style: TextStyle(
                     fontSize: 25,
-                    color: Colors.white70,
+                    color: Color.fromRGBO(52, 58, 64, 1.0),
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               Text(
-                'EMAIL',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
                 user.email,
                 style: TextStyle(
                     fontSize: 25,
-                    color: Colors.white70,
+                    color: Color.fromRGBO(52, 58, 64, 1.0),
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 40),
@@ -74,17 +68,26 @@ class Profile extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Log out',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.purple,),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color.fromRGBO(52, 58, 64, 1.0),),
                   ),
                 ),
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
-              )
+              ),
+              SizedBox(height: 40),
+//              _access ?
+//                  SizedBox(height: 1,) :
+//                  Text(
+//                    "You don't have access",
+//                    style: TextStyle(
+//                    fontSize: 24,
+//                    color: Color.fromRGBO(52, 58, 64, 1.0),
+//                    ),
+//                  ),
             ],
           ),
         ),
-      ),
     );
   }
 }

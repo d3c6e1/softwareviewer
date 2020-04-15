@@ -13,14 +13,16 @@ class SoftwareList extends StatelessWidget{
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(52, 58, 64, 1.0),
+          brightness: Brightness.dark,
           title: Text(title, style: TextStyle(color: Colors.white),),
           centerTitle: true,
           actions: <Widget>[
-            IconButton(icon: CircleAvatar(child: Text(software.length.toString()),), onPressed: null),
-            IconButton(
-                icon: Icon(Icons.search, color: Colors.white,),
-                onPressed: null,
-            ),
+            IconButton(icon: CircleAvatar(child: Text(software.length.toString(), style: TextStyle(fontWeight: FontWeight.bold),),), onPressed: null),
+//            IconButton(
+//                icon: Icon(Icons.search, color: Colors.white,),
+//                onPressed: null,
+//            ),
           ],
         ),
         body: Container(
@@ -28,8 +30,8 @@ class SoftwareList extends StatelessWidget{
             itemCount: software.length,
             itemBuilder: (context, index) {
               return  ListTile(
-                title: Text(software.elementAt(index).appName),
-                subtitle: Text(software.elementAt(index).appVersion),
+                title: Text(software.elementAt(index).appName, overflow: TextOverflow.ellipsis,),
+                subtitle: Text(software.elementAt(index).appVersion, overflow: TextOverflow.ellipsis,),
               );
             }
           ),

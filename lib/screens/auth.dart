@@ -44,7 +44,7 @@ class AuthorizationPageState extends State<AuthorizationPage>{
 
     Widget _button(List<Widget> text, void func()) {
       return RaisedButton(
-        splashColor: Theme.of(context).primaryColor,
+        splashColor: Color.fromRGBO(52, 58, 64, 1.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
         highlightColor: Colors.white70,
         color: Colors.white,
@@ -63,7 +63,7 @@ class AuthorizationPageState extends State<AuthorizationPage>{
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Color.fromRGBO(52, 58, 64, 1.0),
       body: Column(
         children: <Widget>[
           _logo(),
@@ -81,9 +81,9 @@ class AuthorizationPageState extends State<AuthorizationPage>{
 
       if (isAuthorized){
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-                builder: (context) => HomePage()
-            )
+          MaterialPageRoute(
+            builder: (context) => HomePage()
+          )
         );
       }
     });
@@ -91,14 +91,14 @@ class AuthorizationPageState extends State<AuthorizationPage>{
 
   List<Widget> _logInText(BuildContext context) {
     return <Widget>[
-            Image(image: AssetImage("assets/images/google_logo.png"), height: 35.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                'Open with Google',
-                style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
-              ),
-            )
-          ];
+      Image(image: AssetImage("assets/images/google_logo.png"), height: 35.0),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text(
+          'Open with Google',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(52, 58, 64, 1.0), fontSize: 20),
+        ),
+      )
+    ];
   }
 }

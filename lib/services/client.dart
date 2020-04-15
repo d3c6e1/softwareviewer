@@ -20,22 +20,19 @@ class GoogleAuthClient extends BaseClient {
   }
 
   @override
-  Future<Response> post(url,
-      {Map<String, String> headers, body, Encoding encoding}) {
+  Future<Response> post(url, {Map<String, String> headers, body, Encoding encoding}) {
     headers.addAll(defaultHeaders);
     return _httpClient.post(url, headers: headers, encoding: encoding);
   }
 
   @override
-  Future<Response> patch(url,
-      {Map<String, String> headers, body, Encoding encoding}) {
+  Future<Response> patch(url, {Map<String, String> headers, body, Encoding encoding}) {
     headers.addAll(defaultHeaders);
     return _httpClient.patch(url, headers: headers, encoding: encoding);
   }
 
   @override
-  Future<Response> put(url,
-      {Map<String, String> headers, body, Encoding encoding}) {
+  Future<Response> put(url, {Map<String, String> headers, body, Encoding encoding}) {
     headers.addAll(defaultHeaders);
     return _httpClient.put(url,
         headers: headers, body: body, encoding: encoding);

@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final List<Color> colors = [
     Colors.deepPurpleAccent,
     Colors.green,
-    Colors.grey,
+    Color.fromRGBO(52, 58, 64, 1.0),
   ];
 
   @override
@@ -46,7 +46,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: currentColor,
+          backgroundColor: colors.elementAt(2),
+          brightness: Brightness.dark,
           title: Text(
             currentTitle,
             style: TextStyle(
@@ -56,7 +57,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           centerTitle: true,
-          ),
+//          actions: <Widget>[
+//            IconButton(
+//              icon: Icon(Icons.search, color: Colors.white,),
+//              onPressed: () => null,
+//            )
+//          ],
+        ),
         body: SizedBox.expand(
           child: PageView(
             controller: _pageController,
@@ -88,19 +95,19 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(
               icon: Icon(Icons.account_circle),
-              title: Text("Profile"),
+              title: Text(titles[0]),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(0),
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.computer),
-              title: Text('Computers'),
+              title: Text(titles[1]),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(1),
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text('Search'),
+              title: Text(titles[2]),
               textAlign: TextAlign.center,
               activeColor: colors.elementAt(2),
             ),
