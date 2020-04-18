@@ -75,16 +75,6 @@ class ProfileState extends State<Profile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
               ),
-              SizedBox(height: 40),
-//              _access ?
-//                  SizedBox(height: 1,) :
-//                  Text(
-//                    "You don't have access",
-//                    style: TextStyle(
-//                    fontSize: 24,
-//                    color: Color.fromRGBO(52, 58, 64, 1.0),
-//                    ),
-//                  ),
             ],
           ),
         ),
