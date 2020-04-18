@@ -122,7 +122,7 @@ class ComputersListState extends State<ComputersList>{
   ListTile _data(Computer computer) {
     return ListTile(
       title: Text(computer.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34, color: Colors.white), textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,),
-      subtitle: Text(computer.updateDateF, style: TextStyle(color: Colors.white,), textAlign: TextAlign.center,),
+      subtitle: Text(computer.updateDateF, style: TextStyle(color: Colors.white,), textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,),
       trailing: Container(
         decoration: BoxDecoration(
           color: Colors.white,
